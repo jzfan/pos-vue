@@ -1,20 +1,33 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="app">
+      <calc-cmp></calc-cmp>
+        <div class="action-box">
+            <body-cmp></body-cmp>
+        </div>
+      <cate-cmp></cate-cmp>
     </div>
-    <router-view/>
-  </div>
 </template>
+<script>
+import CalcCmp from './components/Calc'
+import CateCmp from './components/Categories'
+import BodyCmp from './components/Body'
+import bus from './eventBus'
+export default {
+  components: {CalcCmp, CateCmp, BodyCmp},
+    name: 'pos-vue',
+    data() {
+        return {
+            // cid: null,
+        }
+    },
+    created() {
+        console.log('created')
+    },
+    methods: {
+    }
+}
+</script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import '../static/app.css'
 </style>

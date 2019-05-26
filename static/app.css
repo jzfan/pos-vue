@@ -1,0 +1,135 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+html,body {
+	height: 100%;
+	width: 100%;
+}
+#app {
+    background: grey;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 99%;
+}
+
+.calc-box {
+	flex: 6;
+    display: flex;
+    max-height: 50vh;
+}
+.action-box {
+    flex: 5;
+}
+
+.calc {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+}
+
+.calc-row {
+    flex: 1;
+    display: flex;
+}
+
+.calc-row>.btn {
+    flex: 1;
+    font-size: 28px;
+}
+.calc-row>.h4 {
+    font-size: 16px;
+}
+
+.calc-row>.btn-enter {
+    flex: 2;
+    font-size: 18px;
+}
+
+.footer {
+    display: flex;
+}
+
+.btn {}
+
+.screen {
+    flex: 6;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    height: 100%;
+}
+
+.screen-list {
+    flex: 1;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    overflow-y: scroll;
+    display: block;
+}
+
+.screen-list>tr {
+    display: flex;
+}
+
+.screen-total {
+    background: #333333;
+    color: #ffffff;
+    text-align: right;
+    padding: 15px 50px;
+}
+.selection-box {
+	flex: 6;
+	display: flex;
+	flex-direction: column;
+}
+.remark-group {
+	flex: 1;
+    display: flex;
+    background: red;
+}
+
+.remark {
+    flex: 1;
+    text-align: center;
+    font-size: 22px;
+
+}
+
+.btn-blue  {
+    background:  #007bff;
+}
+.btn-indigo{
+    background:  #6610f2;
+}
+.btn-purple{
+    background:  #6f42c1;
+}
+.btn-pink  {
+    background:  #e83e8c;
+}
+.btn-red   {
+    background:  #dc3545;
+}
+.btn-orange{
+    background:  #fd7e14;
+}
+.btn-yellow{
+    background:  #ffc107;
+}
+.btn-green {
+    background:  #28a745;
+}
+.btn-teal  {
+    background:  #20c997;
+}
+.btn-cyan  {
+    background:  #17a2b8;
+}
+.bg-light {
+    background: #f1f1f1;
+}
