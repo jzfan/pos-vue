@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import bus from '../eventBus'
 import displayCmp from './Display'
 import calcCmp from './Calc'
 export default {
@@ -25,7 +26,7 @@ export default {
 	},
   methods: {
   	remark(msg) {
-  		console.log(msg)
+  		bus.$emit('remark', msg)
   	},
   }
 }
