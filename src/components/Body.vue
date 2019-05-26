@@ -5,17 +5,18 @@
     </div>
 </template>
 <script>
-
 import FoodsCmp from './Foods'
 import RightCmp from './Right'
 export default {
     components: {
-        FoodsCmp, RightCmp
+        FoodsCmp,
+        RightCmp
     }
 }
 </script>
 <style>
 .body-box {
+    flex: 5;
     display: flex;
     height: 100%;
 }

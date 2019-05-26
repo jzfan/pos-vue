@@ -1,10 +1,9 @@
 <template>
 	<div class="food-box">
-	    <div class="food-group" v-for='chunk in foods'>
-	        <button class="btn" :class='btnColor(food.category_id)' v-for='food in chunk' @click='chooseFood(food)'>
+	        <button class="btn" :class='btnColor(food.category_id)' 
+	        	v-for='food in foods' @click='chooseFood(food)'>
 	            {{ food.abbr }}
 	        </button>
-	    </div>
 	</div>
 </template>
 
@@ -21,8 +20,8 @@ export default {
         bus.$on('chooseCategory', (cid) => {
             this.$http.get(`/foods?cid=${cid}`)
                 .then(res => {
-                    // this.foods = res.data
-                    this.foods = this.chunkFoods(res.data, 8)
+                    this.foods = res.data
+                    // this.foods = this.chunkFoods(res.data, 8)
                 })
         })
         this.categories = JSON.parse(window.localStorage.getItem('categories'))
@@ -57,17 +56,12 @@ export default {
 .food-box {
     flex: 7;
     display: flex;
-    flex-direction: column;
     height: inherit;
+    flex-wrap: wrap
 }
 
-.food-group {
-    flex: 1;
-    display: flex;
-}
-
-.food-group>.btn {
-    flex: 4;
+.food-box>.btn {
+    width: 16.6%
 }
 
 .side-bar {

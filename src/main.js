@@ -12,7 +12,7 @@ Vue.config.productionTip = false
 Vue.filter('upcase', (str) => {
 	return str.toUpperCase()
 })
-Vue.filter('yuan2fen', (num) => {
+Vue.filter('fen2yuan', (num) => {
 	if (num === 0) {
 		return '0'
 	}

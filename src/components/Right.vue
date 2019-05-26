@@ -1,27 +1,25 @@
 <template>
-	<div class="side-bar">
-	    <button class="btn" @click='unchoose'>DELETE</button>
-	    <button class="btn" @click='cashTotal'>Cash Total</button>
-	    <button class="btn">abc</button>
-	</div>
+    <div class="side-bar">
+        <button class="btn" @click='unchoose'>DELETE</button>
+        <button class="btn" @click='cashTotal'>Cash Total</button>
+        <button class="btn">abc</button>
+    </div>
 </template>
-
 <script>
 import bus from '../eventBus'
 export default {
-  methods: {
-      unchoose() {
-          bus.$emit("cancelFood")
-      },
-      cashTotal() {
-          bus.$emit("clearFood")
-      }
-  }
+    methods: {
+        unchoose() {
+            bus.$emit("cancelFood")
+        },
+        cashTotal() {
+            window.location = '#my-modal-box'
+            bus.$emit("cashCharge")
+        }
+    }
 }
 </script>
-
 <style>
-
 .side-bar {
     flex: 1;
     display: flex;
