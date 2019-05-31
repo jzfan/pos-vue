@@ -1,6 +1,9 @@
 <template>
 	<div class="cate-box">
-            <button class="btn" :class='btnColor(category.color)' v-for='category in categories' @click='clicked(category.id)'>
+            <button class="btn" 
+              :class='btnColor(category.color)' 
+              v-for='category in all' 
+              @click='clicked(category)'>
                 {{ category.name | upcase }}
             </button>
             <button class="btn">
@@ -15,21 +18,15 @@
 <script>
 import bus from '../eventBus'
 export default {
-  data() {
-  	return {
-  		categories: []
-  	}
-  },
-  created() {
-  	this.$http.get('/categories')
-  		.then(res => {
-        this.categories = res.data
-        window.localStorage.setItem('categories', JSON.stringify(res.data))
-      })
+  computed: {
+    all() {
+      return this.$store.state.Category.all
+    }
   },
   methods: {
-    clicked(cid) {
-      bus.$emit("chooseCategory", cid)
+    clicked(category) {
+      this.$store.commit('selectCategory', category)
+      this.$store.commit('showFoods', category.id)
     },
     btnColor(color) {
       return `btn-${color}`

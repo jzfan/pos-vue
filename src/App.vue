@@ -19,8 +19,19 @@ export default {
         }
     },
     created() {
-        console.log('created')
-        // console.log(this.$store.state.Counter.main)
+        this.$http.get('/categories')
+            .then(res => {
+                this.$store.commit('setCategories', res.data)
+        })
+        this.$http.get('/foods')
+            .then(res => {
+                let foods = res.data.map((food) => {
+                    food.qty = 1
+                    food.remark = ''
+                    return food
+                })
+                this.$store.commit('setFoods', foods)
+        })
     },
     methods: {}
 }

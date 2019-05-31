@@ -32,11 +32,14 @@ import bus from '../eventBus'
 export default {
 	methods: {
 		enter() {
-			bus.$emit('enter')
+			this.$store.commit('received')
 		},
 		numberClick(e) {
-			bus.$emit('numberInput', e.target.innerHTML)
-			// console.log(e.target.innerHTML)
+            if (this.$store.state.Calc.receiving) {
+			     bus.$emit('paid', e.target.innerHTML)
+            } else {
+                this.$store.commit('orderQty', e.target.innerHTML)
+             }
 		},
 		times() {
 		},

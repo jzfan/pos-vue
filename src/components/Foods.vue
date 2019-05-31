@@ -1,48 +1,33 @@
 <template>
 	<div class="food-box">
-	        <button class="btn" :class='btnColor(food.category_id)' 
-	        	v-for='food in foods' @click='chooseFood(food)'>
+	        <button class="btn" 
+                :class='btnColor(food.category_id)' 
+	        	v-for='food in all'
+                @click='chooseFood(food)'>
 	            {{ food.abbr }}
 	        </button>
 	</div>
 </template>
 
 <script>
-import bus from '../eventBus'
+import {uuid} from '../func'
 export default {
-    data() {
-        return {
-            foods: [],
-            categories: []
+    computed: {
+        all() {
+            return this.$store.state.Food.show
         }
     },
-    created() {
-        bus.$on('chooseCategory', (cid) => {
-            this.$http.get(`/foods?cid=${cid}`)
-                .then(res => {
-                    this.foods = res.data
-                    // this.foods = this.chunkFoods(res.data, 8)
-                })
-        })
-        this.categories = JSON.parse(window.localStorage.getItem('categories'))
-    },
     methods: {
-        chunkFoods(arr, size) {
-            let chunk = []
-            for (let i = 0, len = arr.length; i < len; i += size) {
-                chunk.push(arr.slice(i, i + size));
-            }
-            return chunk
-        },
         btnColor(cid) {
-            for (let c of this.categories) {
+            for (let c of this.$store.state.Category.all) {
                 if (c.id == cid) {
                     return `btn-${c.color}`
                 }
             }
         },
         chooseFood(food) {
-            bus.$emit("order", food)
+            let item = Object.assign({uuid: uuid()}, food)
+            this.$store.commit('orderFood', item)
         }
     }
 }

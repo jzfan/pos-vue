@@ -10,10 +10,13 @@ import bus from '../eventBus'
 export default {
     methods: {
         unchoose() {
-            bus.$emit("cancelFood")
+            this.$store.commit('cancelFood')
         },
         cashTotal() {
-            bus.$emit("cashCharge")
+            if (this.$store.state.Order.all.length === 0) {
+                return false
+            }
+            this.$store.commit('receive_inputing')
         }
     }
 }

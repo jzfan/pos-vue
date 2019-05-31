@@ -65,7 +65,14 @@ html,body {
     font-size: 22px;
 
 }
-
+.food-box>.btn {
+    color: #ffffff;
+}
+.cate-box>.btn {
+    font-size: 18px;
+    font-weight: 400;
+    border: 1px solid #000000;
+}
 .btn-blue  {
     background:  #007bff;
 }
@@ -98,4 +105,7 @@ html,body {
 }
 .bg-light {
     background: #f1f1f1;
+}
+.money {
+    letter-spacing: .3rem;
 }

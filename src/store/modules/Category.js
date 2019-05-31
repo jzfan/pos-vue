@@ -1,13 +1,14 @@
 const state = {
-  receiving: false,
+  all: [],
+  selected: null
 }
 
 const mutations = {
-  receive_inputing (state) {
-    state.receiving = true
+  setCategories (state, all) {
+    state.all = all
   },
-  received (state) {
-    state.receiving = false
+  selectCategory (state, obj) {
+    state.selected = obj
   }
 }
 

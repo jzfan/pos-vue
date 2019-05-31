@@ -5,7 +5,8 @@ import 'buefy/dist/buefy.css';
 import router from './router'
 import store from './store'
 
-axios.defaults.baseURL='http://106.15.35.91:8010/api';
+axios.defaults.baseURL='http://192.168.137.2:4040/api';
+// axios.defaults.baseURL='http://106.15.35.91:8010/api';
 Vue.http = Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
