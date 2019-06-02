@@ -1,5 +1,6 @@
 const state = {
   receiving: false,
+  special: false
 }
 
 const mutations = {
@@ -8,6 +9,9 @@ const mutations = {
   },
   received (state) {
     state.receiving = false
+  },
+  inputSpecial(state) {
+    state.special = true
   }
 }
 

@@ -28,6 +28,10 @@ export default {
         },
         fee() {
             bus.$emit('fee')
+        },
+        special() {
+            this.$store.commit('inputSpecial')
+            // bus.$emit('special')
         }
     }
 }

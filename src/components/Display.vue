@@ -52,16 +52,18 @@ export default {
             this.info += ' fee '
             this.fee = true
         })
+        // bus.$on('special', () => {
+        //     this.$store.commit('inputSpecial')
+        // })
     },
     computed: {
         ...mapState({
             receiving: state => state.Calc.receiving,
             order: state => state.Order.all,
-            total: state => state.Order.total,
         }),
         total() {
             this.scrollToBottom()
-            let sum = this.$store.state.Order.all.reduce((prev, cur) => {
+            let sum = this.order.reduce((prev, cur) => {
               return prev + parseInt(cur.price * 100 * cur.qty)
             }, 0)
             if (this.discount) {
