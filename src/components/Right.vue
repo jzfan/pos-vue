@@ -1,8 +1,8 @@
 <template>
     <div class="side-bar">
+        <button class="btn" @click='orderNumber'>Order Number</button>
         <button class="btn" @click='cashTotal'>Cash Total</button>
-        <button class="btn" @click='unchoose'>DELETE</button>
-        <button class="btn">abc</button>
+        <button class="btn btn-red" @click='unchoose'>Void</button>
     </div>
 </template>
 <script>
@@ -17,6 +17,9 @@ export default {
                 return false
             }
             this.$store.commit('receive_inputing')
+        },
+        orderNumber() {
+            this.$store.commit('orderNumberInput')
         }
     }
 }

@@ -4,7 +4,7 @@
             <tr class="screen-list-header">
                 <td>Food</td>
                 <td>Price</td>
-                <td></td>
+                <td>Num {{ orderNumber }}</td>
             </tr>
             <food-tr v-for='food in order' :key='food.uuid' :food='food'></food-tr>
         </table>
@@ -38,19 +38,33 @@ export default {
             discount: false,
             fee: false,
             info: '',
+            orderNumber: ''
         }
     },
     created() {
         bus.$on('paid', (num) => {
             this.received += num
         })
+        bus.$on('orderNumber', (num) => {
+            this.orderNumber += num
+        })
         bus.$on('discount', () => {
-            this.info += ' discount '
-            this.discount = true
+            if (this.discount === false) {
+                this.info += ' discount '
+                this.discount = true
+            } else {
+                this.info = this.info.replace(' discount ', '')
+                this.discount = false
+            }
         })
         bus.$on('fee', () => {
-            this.info += ' fee '
-            this.fee = true
+            if (this.fee === false) {
+                this.info += ' fee '
+                this.fee = true
+            } else {
+                this.info = this.info.replace(' fee ', '')
+                this.fee = false
+            }
         })
         // bus.$on('special', () => {
         //     this.$store.commit('inputSpecial')
@@ -58,7 +72,7 @@ export default {
     },
     computed: {
         ...mapState({
-            receiving: state => state.Calc.receiving,
+            receiving: state => state.Calc.status === 'pay',
             order: state => state.Order.all,
         }),
         total() {

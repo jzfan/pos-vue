@@ -4,7 +4,7 @@
             <button class="btn">7</button>
             <button class="btn">8</button>
             <button class="btn">9</button>
-            <button class="btn h4">CL</button>
+            <button class="btn h4" @click.stop='clear'>CL</button>
         </div>
         <div class="calc-row">
             <button class="btn">4</button>
@@ -32,19 +32,28 @@ import bus from '../eventBus'
 export default {
 	methods: {
 		enter() {
-			this.$store.commit('received')
+			this.$store.commit('enter')
 		},
 		numberClick(e) {
-            if (this.$store.state.Calc.receiving) {
-			     bus.$emit('paid', e.target.innerHTML)
-            } else {
+            if (this.$store.state.Calc.status === 'pay') {
+                 bus.$emit('paid', e.target.innerHTML)
+                 return false
+            }
+            if (this.$store.state.Calc.status === 'orderNumber') {
+                bus.$emit('orderNumber', e.target.innerHTML)
+                return false
+             }
+            if (this.$store.state.Calc.status === null) {
                 this.$store.commit('orderQty', e.target.innerHTML)
              }
 		},
 		times() {
 		},
 		noSale() {
-		}
+        },
+        clear() {
+
+        }
 	}
 }
 </script>

@@ -1,17 +1,19 @@
 const state = {
-  receiving: false,
-  special: false
+  status: null,
 }
 
 const mutations = {
   receive_inputing (state) {
-    state.receiving = true
+    state.status = 'pay'
   },
-  received (state) {
-    state.receiving = false
+  enter (state) {
+    state.status = null
   },
   inputSpecial(state) {
-    state.special = true
+    state.status = 'special'
+  },
+  orderNumberInput(state) {
+    state.status = 'orderNumber'
   }
 }
 
