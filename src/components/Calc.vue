@@ -35,17 +35,11 @@ export default {
 			this.$store.commit('enter')
 		},
 		numberClick(e) {
-            if (this.$store.state.Calc.status === 'pay') {
-                 bus.$emit('paid', e.target.innerHTML)
-                 return false
-            }
-            if (this.$store.state.Calc.status === 'orderNumber') {
-                bus.$emit('orderNumber', e.target.innerHTML)
-                return false
-             }
             if (this.$store.state.Calc.status === null) {
                 this.$store.commit('orderQty', e.target.innerHTML)
+                return false
              }
+            this.$store.commit('numberInput', e.target.innerHTML)
 		},
 		times() {
 		},

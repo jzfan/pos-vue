@@ -34,20 +34,13 @@ export default {
     },
     data() {
         return {
-            received: '',
+            // received: '',
             discount: false,
             fee: false,
-            info: '',
-            orderNumber: ''
+            info: ''
         }
     },
     created() {
-        bus.$on('paid', (num) => {
-            this.received += num
-        })
-        bus.$on('orderNumber', (num) => {
-            this.orderNumber += num
-        })
         bus.$on('discount', () => {
             if (this.discount === false) {
                 this.info += ' discount '
@@ -74,6 +67,8 @@ export default {
         ...mapState({
             receiving: state => state.Calc.status === 'pay',
             order: state => state.Order.all,
+            received: state => state.Calc.pay,
+            orderNumber: state => state.Calc.orderNumber
         }),
         total() {
             this.scrollToBottom()

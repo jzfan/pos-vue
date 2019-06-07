@@ -16,10 +16,10 @@ export default {
             if (this.$store.state.Order.all.length === 0) {
                 return false
             }
-            this.$store.commit('receive_inputing')
+            this.$store.commit('inputing', 'pay')
         },
         orderNumber() {
-            this.$store.commit('orderNumberInput')
+            this.$store.commit('inputing', 'orderNumber')
         }
     }
 }

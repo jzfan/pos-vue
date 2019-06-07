@@ -1,19 +1,22 @@
 const state = {
   status: null,
+  inputing: false,
+  pay: '',
+  orderNumber: ''
 }
 
 const mutations = {
-  receive_inputing (state) {
-    state.status = 'pay'
+  inputing(state, status) {
+    state.inputing = true
+    state.status = status
+    state[status] = ''
   },
-  enter (state) {
+  enter(state) {
     state.status = null
+    state.inputing = false
   },
-  inputSpecial(state) {
-    state.status = 'special'
-  },
-  orderNumberInput(state) {
-    state.status = 'orderNumber'
+  numberInput (state, num) {
+    state[state.status] += num
   }
 }
 
