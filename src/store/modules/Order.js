@@ -12,7 +12,6 @@ const mutations = {
     },
     cancelFood(state) {
         if (state.selectedUuid !== null) {
-            let item = state.all.find((obj) => obj.uuid === state.selectedUuid)
             state.all = state.all.filter((obj) => obj.uuid !== state.selectedUuid)
             state.selectedUuid = null
         }
@@ -30,10 +29,14 @@ const mutations = {
         }
         item.remark += (msg + "\n")
     },
+    clearText(state) {
+        let item = state.all.find((obj) => obj.uuid === state.selectedUuid)
+        item.remark = ''
+    },
     orderQty(state, n) {
         if (state.selectedUuid !== null) {
-          let item = state.all.find((obj) => obj.uuid === state.selectedUuid)
-          Vue.set(item, 'qty', n)
+            let item = state.all.find((obj) => obj.uuid === state.selectedUuid)
+            Vue.set(item, 'qty', n)
         }
     }
 }

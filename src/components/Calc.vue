@@ -28,7 +28,6 @@
     </div>
 </template>
 <script>
-import bus from '../eventBus'
 export default {
 	methods: {
 		enter() {

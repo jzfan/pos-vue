@@ -53,18 +53,7 @@ html,body {
 	display: flex;
 	flex-direction: column;
 }
-.remark-group {
-	flex: 1;
-    display: flex;
-    background: red;
-}
 
-.remark {
-    flex: 1;
-    text-align: center;
-    font-size: 22px;
-
-}
 .food-box>.btn {
     color: #ffffff;
 }
