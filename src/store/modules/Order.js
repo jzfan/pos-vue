@@ -29,7 +29,7 @@ const mutations = {
         }
         item.remark += (msg + "\n")
     },
-    clearText(state) {
+    clearRemark(state) {
         let item = state.all.find((obj) => obj.uuid === state.selectedUuid)
         item.remark = ''
     },
@@ -38,6 +38,9 @@ const mutations = {
             let item = state.all.find((obj) => obj.uuid === state.selectedUuid)
             Vue.set(item, 'qty', n)
         }
+    },
+    specialOrder(state, specialFood) {
+        state.all.push(specialFood)
     }
 }
 

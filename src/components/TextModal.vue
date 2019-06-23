@@ -1,7 +1,7 @@
 <template>
   <div class="body-box flex-col">
     <div class="text-input-col">
-      <input type="text" v-model="text" class="text-input">
+      <input type="text" v-model="text" class="text-input" :placeholder="tip">
       <button class="btn btn-blue" @click="submitText">OK</button>
       <button class="btn btn-green" @click="clearText">Clear</button>
       <button class="btn btn-red" @click="cancelText">Cancel</button>
@@ -25,6 +25,27 @@ export default {
       text: ""
     };
   },
+  computed: {
+    action() {
+      return this.$store.state.Text.action;
+    },
+    tip() {
+      if (this.$store.state.Text.action === "special") {
+        return "Name";
+      }
+      if (this.$store.state.Text.action === "special.price") {
+        return "Price";
+      }
+      if (this.$store.state.Text.action === "special.qty") {
+        return "Quantity";
+      }
+    }
+  },
+  created() {
+    bus.$on("textNumber", number => {
+      this.text += number;
+    });
+  },
   methods: {
     type(letter) {
       if (letter === "back") {
@@ -38,14 +59,39 @@ export default {
     },
     cancelText() {
       this.text = "";
-      bus.$emit("cancelText");
+      this.$store.commit("textAction", null);
     },
     clearText() {
-      this.$store.commit("clearText");
+      this.text = "";
+      if (this.action === "remark") {
+        this.$store.commit("clearRemark");
+      }
     },
     submitText() {
-      this.$store.commit("remarkItem", this.text);
-      this.cancelText();
+      if (this.action === "remark") {
+        this.$store.commit("remarkItem", this.text);
+        this.$store.commit("textAction", null);
+        this.cancelText();
+        return;
+      }
+
+      if (this.action === "special") {
+        this.$store.commit("specialName", this.text);
+        this.text = "";
+        return;
+      }
+      if (this.action === "special.price") {
+        this.$store.commit("specialPrice", this.text);
+        this.text = "";
+        return;
+      }
+      if (this.action === "special.qty") {
+        this.$store.commit("specialQty", this.text);
+        this.text = "";
+        this.$store.commit("specialOrder", this.$store.state.Text.specialFood);
+        this.$store.commit("specialReset");
+        return;
+      }
     }
   }
 };
@@ -63,8 +109,8 @@ export default {
   flex: 1;
   font-size: 1.5rem;
 }
-.text-col button:nth-last-child() {
-  flex: 2;
+.text-col:nth-last-child(1) > button:nth-last-child(1) {
+  flex: 3;
 }
 .text-input-col {
   display: flex;
@@ -77,5 +123,8 @@ export default {
 }
 .text-input-col > button {
   flex: 1;
+}
+.text-input-col > button:nth-child(2) {
+  flex: 2;
 }
 </style>

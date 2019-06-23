@@ -5,6 +5,7 @@ import Calc from './modules/Calc'
 import Category from './modules/Category'
 import Food from './modules/Food'
 import Order from './modules/Order'
+import Text from './modules/Text'
 
 Vue.use(Vuex)
 
@@ -12,7 +13,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   // plugins: [createPersistedState()],
   modules: {
-  	Calc, Category, Food, Order
+    Calc, Category, Food, Order, Text
   }
 })
 

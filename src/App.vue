@@ -18,8 +18,16 @@ export default {
   data() {
     return {
       // cid: null,
-      showTextModal: false
+      // showTextModal: false
     };
+  },
+  computed: {
+    showTextModal: {
+      get() {
+        return this.$store.state.Text.action !== null;
+      },
+      set() {}
+    }
   },
   created() {
     this.$http.get("/categories").then(res => {
@@ -33,12 +41,18 @@ export default {
       });
       this.$store.commit("setFoods", foods);
     });
-
-    bus.$on("text", () => {
-      this.showTextModal = !this.showTextModal;
-    });
-    bus.$on("cancelText", () => {
-      this.showTextModal = false;
+    const buttonStyleHandler = e => {
+      if (e.target.nodeName === "BUTTON") {
+        let btn = document.getElementsByClassName("btn-active")[0];
+        if (typeof btn !== "undefined") {
+          btn.className = btn.className.replace(" btn-active", "");
+        }
+        e.target.className += " " + "btn-active";
+      }
+    };
+    document.addEventListener("click", buttonStyleHandler);
+    this.$once("hook:destroyed", () => {
+      document.removeEventListener("click", buttonStyleHandler);
     });
   },
   methods: {}
