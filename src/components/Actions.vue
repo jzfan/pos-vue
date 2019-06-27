@@ -1,10 +1,10 @@
 <template>
   <div class="actions">
     <div>
-      <button class="btn btn-cyan" @click="text">Text</button>
-      <button class="btn btn-red" @click="refund">Refund</button>
-      <button class="btn btn-cyan" @click="special">Special</button>
-      <button class="btn btn-cyan"></button>
+      <button class="btn btn-cyan" @click="cashTotal">Cash Total</button>
+      <button class="btn" @click="orderNumber">Order Number</button>
+      <button class="btn btn-red" @click="unchoose">Void</button>
+      <button class="btn"></button>
     </div>
     <div>
       <button class="btn btn-green" @click="remark('take away')">T/A</button>
@@ -19,6 +19,9 @@
 import bus from "../eventBus";
 export default {
   methods: {
+    unchoose() {
+      this.$store.commit("cancelFood");
+    },
     remark(msg) {
       this.$store.commit("remarkItem", msg);
     },
@@ -28,17 +31,14 @@ export default {
     fee() {
       bus.$emit("fee");
     },
-    special() {
-      this.$store.commit("textAction", "special");
-      // bus.$emit("text", "special");
+    orderNumber() {
+      this.$store.commit("inputing", "orderNumber");
     },
-    text() {
-      this.$store.commit("textAction", "remark");
-      // bus.$emit("text", "remark");
-    },
-    refund() {
-      bus.$emit("text", "refund");
-      //   window.print();
+    cashTotal() {
+      if (this.$store.state.Order.all.length === 0) {
+        return false;
+      }
+      this.$store.commit("inputing", "pay");
     }
   }
 };

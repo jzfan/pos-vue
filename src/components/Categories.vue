@@ -3,7 +3,8 @@
             <button class="btn" 
               :class='btnColor(category.color)' 
               v-for='category in all' 
-              @click='clicked(category)'>
+              @click='clicked(category)'
+              :key='category.id'>
                 {{ category.name | upcase }}
             </button>
             <button class="btn">

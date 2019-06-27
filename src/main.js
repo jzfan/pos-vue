@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import axios from 'axios';
-import 'buefy/dist/buefy.css';
 import store from './store'
 
 axios.defaults.baseURL = 'http://192.168.137.2:4040/api';

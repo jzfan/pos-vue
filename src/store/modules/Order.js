@@ -27,7 +27,11 @@ const mutations = {
         if (item.remark.includes(msg)) {
             return false
         }
-        item.remark += (msg + "\n")
+        if (item.remark === '') {
+            item.remark = msg
+        } else {
+            item.remark += ("|" + msg)
+        }
     },
     clearRemark(state) {
         let item = state.all.find((obj) => obj.uuid === state.selectedUuid)
